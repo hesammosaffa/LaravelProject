@@ -16,12 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', "IndexController@index");
 
-Route::get('/videos',"VideoController@index");
-
-Route::get('/factory/{count}', function($count){
-    Video::factory($count)->create();
-});
-
-Route::get('/test',function(){
-    return view('test');
+Route::get('/upload',function(){
+   return view('videos.create');
 });
