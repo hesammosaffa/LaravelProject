@@ -28,9 +28,20 @@ class VideoController extends Controller
         return redirect()->route('index')->with('alart', __('messages.success'));
     }
 
-    public function show(Request $request, int $id)
+    public function show(Request $request, video $video)
     {
-        $video = Video::find($id);
-        return view('videos.show',compact('video'));
+        return view('videos.show', compact('video'));
+    }
+
+    public function edit(video $video)
+    {
+        return view('videos.edit', compact('video'));
+    }
+
+    public function update(Request $request, video $video)
+    {
+        $video->update($request->all());
+
+        return redirect()->route('videos.show', $video->slug)->with('alart', __('messages.video_edited'));
     }
 }
