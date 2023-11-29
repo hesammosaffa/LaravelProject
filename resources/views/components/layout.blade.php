@@ -67,7 +67,7 @@
                     <div class="dropdown">
                         <a data-toggle="dropdown" href="#" class="user-area">
                             <div class="thumb"><img
-                                    src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim('hesam.mosaffa.1251@gmail.com'))) }}"
+                                    src="https://www.gravatar.com/avatar/{{md5( strtolower( trim("hesam.mosaffa.1251@gmail.com") ) )}}"
                                     alt="">
                             </div>
                             <h2>حسام الدین مصفا</h2>
@@ -102,14 +102,9 @@
     </div><!-- // main-category -->
 
     <div class="site-output">
-        @if (session('alart'))
-            <div class="alert alert-success">
-                {{ session('alart') }}
-            </div>
-        @endif
         <div id="all-output" class="col-md-12">
 
-            @yield('content')
+            {{ $content ?? '' }}
 
         </div>
     </div><!-- // row -->

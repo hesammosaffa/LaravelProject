@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', "IndexController@index");
+Route::get('/', "IndexController@index")->name('index');
 
-Route::get('/upload',function(){
-   return view('videos.create');
-});
+Route::get('/videos/create',"VideoController@create")->name('videos.create');
+Route::post('/videos',"VideoController@store")->name('videos.store');
+Route::get('/videos/{id}', "VideoController@show")->name('videos.show');
