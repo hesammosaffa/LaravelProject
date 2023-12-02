@@ -10,6 +10,7 @@
             <a href="{{ route('videos.show', $video->slug) }}" class="title">{{ $video->name }}</a>
             <a class="channel-name" href="{{ route('videos.show', $video->slug) }}">داود طاهری<span>
                     <i class="fa fa-check-circle"></i></span></a>
+                    <span class=""><i class="fa fa-tag"></i>{{ $video->CategoryName}}</span>
         </div>
     @endforeach
 

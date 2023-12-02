@@ -21,3 +21,11 @@ Route::post('/videos',"VideoController@store")->name('videos.store');
 Route::get('/videos/{video}', "VideoController@show")->name('videos.show');
 route::get('/videos/{video}/edit', "VideoController@edit")->name('videos.edit');
 route::post('/videos/{video}/', "VideoController@update")->name('videos.update');
+
+Route::get('/categories/{category:slug}/videos', "CategoryVideoController@index")->name('category.index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.labels')</label>
-                            <input type="text" class="form-control" placeholder="@lang('videos.labels')">
+                            <x-categories :categories="$categories" :video="$video"></x-categories>
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.video_upload')</label>

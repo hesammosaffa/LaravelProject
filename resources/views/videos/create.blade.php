@@ -3,7 +3,7 @@
 @section('content')
     <div id="upload">
         <div class="row">
-            
+
             <x-validation-errors></x-validation-errors>
 
             <!-- upload -->
@@ -15,35 +15,40 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>@lang('videos.name')</label>
-                            <input name="name" value="{{old('name')}}" type="text" class="form-control" placeholder="@lang('videos.name')">
+                            <input name="name" value="{{ old('name') }}" type="text" class="form-control"
+                                placeholder="@lang('videos.name')">
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.length')</label>
-                            <input name="length" value="{{old('length')}}" type="number" class="form-control" placeholder="@lang('videos.length')">
+                            <input name="length" value="{{ old('length') }}" type="number" class="form-control"
+                                placeholder="@lang('videos.length')">
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.slug')</label>
-                            <input name="slug" value="{{old('slug')}}" type="text" class="form-control" placeholder="">
+                            <input name="slug" value="{{ old('slug') }}" type="text" class="form-control"
+                                placeholder="">
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.video-address')</label>
-                            <input name="url" value="{{old('url')}}" type="text" class="form-control" placeholder="@lang('videos.video-address')">
+                            <input name="url" value="{{ old('url') }}" type="text" class="form-control"
+                                placeholder="@lang('videos.video-address')">
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.thumbnail')</label>
-                            <input name="thumbnail" value="{{old('thumbnail')}}" type="text" class="form-control" placeholder="@lang('videos.thumbnail')">
+                            <input name="thumbnail" value="{{ old('thumbnail') }}" type="text" class="form-control"
+                                placeholder="@lang('videos.thumbnail')">
                         </div>
                         <div class="col-md-6">
-                            <label>@lang('videos.labels')</label>
-                            <input type="text" class="form-control" placeholder="@lang('videos.labels')">
+                            <x-categoriesSet :categories="$categories"></x-categoriesSet>
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.video_upload')</label>
-                            <input id="upload_file" type="file" class="file">
+                            <input class="form-control" id="upload_file" type="file" class="file">
                         </div>
                         <div class="col-md-12">
                             <label>@lang('videos.description')</label>
-                            <textarea name="description" value="{{old('description')}}" class="form-control" rows="4" placeholder="@lang('videos.description')"></textarea>
+                            <textarea name="description" value="{{ old('description') }}" class="form-control" rows="4"
+                                placeholder="@lang('videos.description')"></textarea>
                         </div>
                         <div class="col-md-6">
                             <label>@lang('videos.picture')</label>

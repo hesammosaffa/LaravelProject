@@ -22,7 +22,8 @@ class VideoFactory extends Factory
             'length' => $this->faker->numberBetween(100,255),
             'slug' => $this->faker->slug(),
             'description' => $persionFaker->realText(rand(10,100)),
-            'thumbnail' => 'https://loremflickr.com/446/240/world?random='. rand(1,1000)
+            'thumbnail' => 'https://loremflickr.com/446/240/world?random='. rand(1,1000),
+            'category_id' => rand(1,7)
         ];
     }
 }
