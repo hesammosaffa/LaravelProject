@@ -1,56 +1,46 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('auth-layout')
+@section('class-body', 'log_in_page')
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+@section('content')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    <div id="log-in" class="site-form log-in-form">
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+        <div id="log-in-head">
+            <h1>ورود</h1>
+            <div id="logo"><a href="{{route('index')}}"><img src="img/logo.png" alt=""></a></div>
+        </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+        <div class="form-output">
+            <x-validation-errors></x-validation-errors>
+            <form action="{{route('login.store')}}" method="POST">
+                @csrf
+                <div class="form-group label-floating">
+                    <label class="control-label">ایمیل</label>
+                    <input class="form-control" name="email" placeholder="" type="email">
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" >رمز عبور</label>
+                    <input class="form-control" name="password" placeholder="" type="password">
+                </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+                <div class="remember">
+                    <div class="checkbox">
+                        <label>
+                            <input name="remember" type="checkbox">
+                            مرا به خاطر بسپار
+                        </label>
+                    </div>
+                    <a href="#" class="forgot">رمز عبور من را فراموش کرده ام</a>
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <button class="btn btn-lg btn-primary full-width">ورود</button>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+                <div class="or"></div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                <p>آیا شما یک حساب کاربری ندارید؟ <a href="{{route('register.create')}}">ثبت نام کنید!</a> </p>
+            </form>
+        </div>
+    </div>
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+@endsection

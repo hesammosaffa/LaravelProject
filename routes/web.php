@@ -1,7 +1,15 @@
 <?php
 
+use App\Events\VideoCreated;
+use App\Jobs\Otp;
+use App\Jobs\ProcessVideo;
+use App\Mail\VerifyEmail;
+use App\Models\User;
 use App\Models\Video;
+use App\Notifications\VideoProcessed;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', "IndexController@index")->name('index');
 
-Route::get('/videos/create',"VideoController@create")->name('videos.create');
+Route::get('/videos/create',"VideoController@create")->middleware('verifed.email')->name('videos.create');
 Route::post('/videos',"VideoController@store")->name('videos.store');
 Route::get('/videos/{video}', "VideoController@show")->name('videos.show');
 route::get('/videos/{video}/edit', "VideoController@edit")->name('videos.edit');
@@ -29,3 +37,26 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/verify/{id}', function () {
+    dd(request()->hasValidSignature());
+    echo "verify";
+})->name('verify');
+
+Route::get('/generate', function () {
+    echo URL::temporarySignedRoute('verify',now()->addMinutes(1),['id' => 5]);
+});
+
+Route::get('/email', function () {
+    Mail::to('hesam.mosaffa.1251@gmail.com')->send(new VerifyEmail(User::first()));
+});
+
+Route::get('/event', function () {
+    $video = Video::first();
+    VideoCreated::dispatch($video);
+});
+Route::get('/notify', function () {
+    $user = User::first();
+    $user->notify(new VideoProcessed(Video::first()));
+});

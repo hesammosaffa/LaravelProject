@@ -25,7 +25,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for serialization.
-     *
+     *    
      * @var array<int, string>
      */
     protected $hidden = [
@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getGravatarAttribute()
+    {
+        $hash = md5(strtolower($this->attributes['email']));
+        return "https://www.gravatar.com/avatar/" . $hash;
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }

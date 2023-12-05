@@ -31,10 +31,10 @@
                 <!-- Chanels Item -->
                 <div class="chanel-item">
                     <div class="chanel-thumb">
-                        <a href="#"><img src="demo_img/ch-1.jpg" alt=""></a>
+                        <a href="#"><img src="{{$video->OwnerAvatar}}" alt=""></a>
                     </div>
                     <div class="chanel-info">
-                        <a class="title" href="#">داود طاهری</a>
+                        <a class="title" href="#">{{$video->OwnerName}}</a>
                         <span class="subscribers">436,414 اشتراک</span>
                     </div>
                     <a href="#" class="subscribe">اشتراک</a>
@@ -49,9 +49,9 @@
                         <li>
                             <div class="post_author">
                                 <div class="img_in">
-                                    <a href="#"><img src="demo_img/c1.jpg" alt=""></a>
+                                    <a href="#"><img src={{$video->OwnerAvatar}} alt=""></a>
                                 </div>
-                                <a href="#" class="author-name">داود طاهری</a>
+                                <a href="#" class="author-name">{{$video->OwnerName}}</a>
                                 <time datetime="2017-03-24T18:18">مرداد 27, 1397 - 11:00</time>
                             </div>
                             <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان

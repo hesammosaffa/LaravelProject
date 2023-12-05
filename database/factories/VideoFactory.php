@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +24,8 @@ class VideoFactory extends Factory
             'slug' => $this->faker->slug(),
             'description' => $persionFaker->realText(rand(10,100)),
             'thumbnail' => 'https://loremflickr.com/446/240/world?random='. rand(1,1000),
-            'category_id' => rand(1,7)
+            'category_id' => rand(1,7),
+            'user_id' => User::first() ?? User::factory()
         ];
     }
 }

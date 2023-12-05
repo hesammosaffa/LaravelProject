@@ -25,6 +25,7 @@ class VerifyEmailController extends Controller
             event(new Verified($request->user()));
         }
 
+        return redirect()->route('index')->with('alart',__('messages.your_email_was_verifed'));
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
     }
 }

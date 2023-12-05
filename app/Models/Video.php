@@ -13,7 +13,7 @@ class Video extends Model
     protected $fillable = [
         'name', 'url', 'thumbnail', 'slug', 'length', 'description', 'category_id'
     ];
-    
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -39,8 +39,23 @@ class Video extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getCategoryNameAttribute()
     {
         return $this->category?->name;
+    }
+
+    public function getOwnerNameAttribute()
+    {
+        return $this->user?->name;
+    }
+
+    public function getOwnerAvatarAttribute()
+    {
+        return $this->user?->gravatar;
     }
 }

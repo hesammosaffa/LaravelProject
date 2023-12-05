@@ -3,18 +3,20 @@
         <div class="thumb">
             <div class="hover-efect"></div>
             <small class="time">{{ $video->lengthInHuman }}</small>
-            <a href="{{route('videos.show',$video->slug)}}"><img src={{ $video->thumbnail }} alt=""></a>
+            <a href="{{ route('videos.show', $video->slug) }}"><img src={{ $video->thumbnail }} alt=""></a>
         </div>
         <div class="video-info">
-            <a href="{{route('videos.show',$video->slug)}}" class="title">{{ $video->name }}</a>
-            <a href="{{route('videos.edit',$video->slug)}}">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <a href="{{ route('videos.show', $video->slug) }}" class="title">{{ $video->name }}</a>
+            <a href="{{ route('videos.edit', $video->slug) }}">
+                @auth
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                @endauth
             </a>
-            <a class="channel-name" href="{{route('videos.show',$video->slug)}}">hesameddin Mosaffa<span>
+            <a class="channel-name" href="{{ route('videos.show', $video->slug) }}">{{$video->OwnerName}}<span>
                     <i class="fa fa-check-circle"></i></span></a>
             <span class="views"><i class="fa fa-eye"></i>2.8M بازدید </span>
             <span class="date"><i class="fa fa-clock-o"></i>{{ $video->created_at }}</span>
-            <span class=""><i class="fa fa-tag"></i>{{ $video->CategoryName}}</span>
+            <span class=""><i class="fa fa-tag"></i>{{ $video->CategoryName }}</span>
         </div>
     </div>
 </div>

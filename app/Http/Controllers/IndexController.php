@@ -9,6 +9,7 @@ class IndexController extends Controller
 {
     public function index()
     {
+    
         $videos = Video::latest()->take(6)->get();
         $mostPopularVideos = Video::all()->random(6);
         $mostViewVideos = Video::all()->random(6);

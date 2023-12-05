@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CheckVerifyEmail;
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
 use App\Models\Category;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
+
     public function index()
     {
         $videos = Video::all();
@@ -21,13 +24,14 @@ class VideoController extends Controller
 
     public function create()
     {
+    
         $categories = Category::all();
-        return view('videos.create',compact('categories'));
+        return view('videos.create', compact('categories'));
     }
 
     public function store(StoreVideoRequest $request)
     {
-        Video::create($request->all());
+        $request->user()->videos()->create($request->all());
         return redirect()->route('index')->with('alart', __('messages.success'));
     }
 
@@ -39,7 +43,7 @@ class VideoController extends Controller
     public function edit(video $video)
     {
         $categories = Category::all();
-        return view('videos.edit', compact('video','categories'));
+        return view('videos.edit', compact('video', 'categories'));
     }
 
     public function update(UpdateVideoRequest $request, video $video)
